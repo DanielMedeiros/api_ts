@@ -4,6 +4,7 @@ import * as bodyParser from "body-parser";
 import NewsController from "./controller/newsController";
 import * as cors from "cors";
 import Auth from "./infra/auth";
+import upload from "./infra/uploads";
 
 class StartUp {
   public app: express.Application;
@@ -39,6 +40,14 @@ class StartUp {
     this.app.get("/", (req, res) => {
       res.send({ versao: "0.0.1", message: "API is running" });
     });
+
+    this.app.route("/api/v1/upload")
+      .post(upload.single("file"), (req, res) => {
+        if (!req.file) {
+          return res.status(400).json({ message: "File not uploaded" });
+        }
+        res.status(200).json({ message: "File uploaded successfully", file: req.file });
+      });
 
     this.app.use(Auth.validate);
 
