@@ -1,0 +1,23 @@
+Ajustes para rodar direto com docker:
+
+1 - Alterar o arquivo package.json o item:
+ - "start": "node ./dist/program.js" - para rodar no npm run
+ - "start": "node program.js" - para rodar no docker
+
+
+2 - Alterar db.ts dentro de infra o item:
+-  constructor() {
+        this.DB_URL = process.env.DB_URL || 'mongodb://localhost:27017/db_portal';
+        console.log(`Attempting to connect to MongoDB at: ${this.DB_URL}`);
+    } - para rodar no npm run
+
+-  constructor() {
+        this.DB_URL = process.env.DB_URL || 'mongodb://link-db/db_portal';
+        console.log(`Attempting to connect to MongoDB at: ${this.DB_URL}`);
+    } - para rodar no docker
+
+3 - Alterar newsController.ts no item:
+- let client = redis.createClient({ url: process.env.REDIS_URL }); - para rodar no npm run
+- let client = redis.createClient(6379, 'redis'); - para rodar no docker
+ou alternativa:
+    - let client = redis.createClient({ socket: { port: 6379, host: 'redis' } }); para rodar no docker

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc -w",
-    "start": "node ./dist/program.js"
+    "start": "node program.js"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.5",
     "multer": "^2.0.2",
+    "redis": "^5.8.1",
+    "request": "^2.88.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
@@ -31,6 +33,12 @@
     "@types/http-status": "^1.1.2",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/multer": "^2.0.0",
-    "@types/node": "^24.1.0"
+    "@types/node": "^24.1.0",
+    "@types/redis": "^4.0.11",
+    "@types/request": "^2.48.13"
+  },
+  "overrides": {
+    "form-data": "2.5.5",
+    "tough-cookie": "4.1.4"
   }
 }
